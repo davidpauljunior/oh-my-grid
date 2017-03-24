@@ -1,11 +1,78 @@
 @import 'config';
 
+// this is like forEach(el ()=> {});
+@function omg-map-get($map) {
+    @each $item, $key in $map {
+        @return $key;
+    }
+}
+
+// In order to merge a user config with the default config
+// you need to be able to get values, and set values.
+// Assume that this config doesn't allow for nested maps?
+
+// omg-defaults below might be merged with a user config / overrdies config.
+@function omg-map-get($key) {
+    @if map-has-key($omg-defaults, $key) {
+        @return map-get($omg-defaults, $key);
+    }
+
+    @warn "Unknown `#{$key}` in $omg-defaults.";
+    @return null;
+}
+
+@function omg-col-width($cols) {
+    @return percentage(omg-map-get($columns) / $cols);
+}
+
+@mixin omg-span($cols) {
+    // Do a sanity check on value passed in.
+    width: omg-col-width($cols);
+}
+
+// Start by working out the width
+// Need to get values from the map
+// and calculate as a percentage.
+
+// @mixin grid-row($gutter: null) {
+//     // TODO: Check the args
+//     // Probably not gonna work here because of the order?
+//     // May need to use $gutter: null
+//     display: flex;
+//     flex-direction: row;
+//     flex-wrap: wrap;
+
+//     @if $gutter == null {
+//         margin-left: -#{$gutter};
+//     }
+
+//     @else if $gutter != 'no-gutter' {
+//         @warn 'You passed in the wrong argument for gutter';
+//     }
+// }
+
+// What am I trying to do?
+// This function is supposed to replace map-get.
+// Because map-get is so repetitive.
+
+// @each $name, $icon in $icons {
+//     .fa-#{$name}:before {
+//         content: $icon;
+//     }
+// }
+
+.test {
+    @include omg-span(6);
+}
+
+
 // Create a function that retrieves a value from a sass map (so don't keep writing-map-get
+// Also needs to be merged with a users map, and take thier values over these.
 
 // Create a loop that goes through number of columns
-@function omg-loop-columns($columns) {
-    // from 1 through $omg-columns;
-}
+// @function omg-loop-columns($columns) {
+//     // from 1 through $omg-columns;
+// }
 
 
 // What can be called when using it?

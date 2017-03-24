@@ -14,7 +14,7 @@
 // Becomes either a percentage between 1 and 100 or a number between 0 and 1
 // Do we allow for gutter position?
 
-$omg: (
+$omg-defaults: (
     columns: 12,
     gutter: 25%,
     enable-flex: true,

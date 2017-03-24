@@ -1,1 +1,0 @@
-sass-lint --config oh-my-grid/.sass-lint.yml 'src/scss/**/*.scss' --verbose --no-exit

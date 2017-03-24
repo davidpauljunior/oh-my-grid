@@ -7,6 +7,7 @@
     "test": "test"
   },
   "scripts": {
+    "sass-compile": "node-sass --output-style nested --indent-type tab --indent-width 4 -o dist/css src/scss",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
