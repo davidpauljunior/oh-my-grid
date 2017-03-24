@@ -1,0 +1,25 @@
+// NOTE - has a reliance on box-sizing: border-box
+// OR, it has to calculate widths differently depending on a config for that.
+
+// Breakpoints?
+// How can classes be exposed that don't cater for MQs? e.g. col-8@md
+// How can that be defined in the config?
+// Is exposing classes good? Can people do that themselves?
+// xs, sm, md, lg
+// Could look for a map called $breakpoints and use the keys?  If not found, use our defaults?
+
+
+// Q: is 25% easier to read that .25?  It's a percentage of a single column.
+// If yes, need to do a check that what's passed in is a '%'.  Perhaps can allow for both?
+// Becomes either a percentage between 1 and 100 or a number between 0 and 1
+// Do we allow for gutter position?
+
+$omg: (
+    columns: 12,
+    gutter: 25%,
+    enable-flex: true,
+    expose-selectors: true,
+    row-selector: 'row',
+    col-selector-prefix: 'col-'
+);
+

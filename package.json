@@ -1,0 +1,30 @@
+{
+  "name": "oh-my-grid",
+  "version": "1.0.0",
+  "description": "Configurable sass grid system",
+  "main": "oh-my-grid.scss",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davidpauljunior/oh-my-grid.git"
+  },
+  "keywords": [
+    "grid",
+    "flexbox"
+  ],
+  "author": "David Paul",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/davidpauljunior/oh-my-grid/issues"
+  },
+  "homepage": "https://github.com/davidpauljunior/oh-my-grid#readme",
+  "devDependencies": {
+    "node-sass": "^4.5.1",
+    "sass-lint": "^1.10.2"
+  }
+}
