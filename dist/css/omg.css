@@ -1,2 +1,11 @@
-.thing {
-				color: 12; }
+/**
+ * Can be flex or not (Jake Archibald stuff about page-layout - although not true with flex basis I think)
+ * Can take a param of no-gutter or ng to allow for flush grids
+ * Can merge with user config
+ * Can output css classnames if enabled
+ */
+/**
+ * BREAKPOINTS *
+ */
+.test {
+				flex-basis: 50%; }

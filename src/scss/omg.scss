@@ -1,33 +1,69 @@
+/**
+ * Can be flex or not (Jake Archibald stuff about page-layout - although not true with flex basis I think)
+ * Can take a param of no-gutter or ng to allow for flush grids
+ * Can merge with user config
+ * Can output css classnames if enabled
+ */
+
+
 @import 'config';
 
 // this is like forEach(el ()=> {});
-@function omg-map-get($map) {
-    @each $item, $key in $map {
-        @return $key;
-    }
-}
+// @function omg-map-get($map) {
+//     @each $item, $key in $map {
+//         @return $key;
+//     }
+// }
+
+/**
+ * BREAKPOINTS *
+ */
+// For breakpoints, it's going to make an assumption
+// that the user has defined them as a map called "breakpoints".
+// But can set in the config the name of the map.
+// This will get an set in our config.
+// Will loop through that map, and use the name from it to spit out the class name?
+// omg-10@medium for example.
+
+
 
 // In order to merge a user config with the default config
 // you need to be able to get values, and set values.
-// Assume that this config doesn't allow for nested maps?
+// To avoid deepMap gets and sets, this config assumes to contain no nesting.
 
-// omg-defaults below might be merged with a user config / overrdies config.
 @function omg-map-get($key) {
     @if map-has-key($omg-defaults, $key) {
         @return map-get($omg-defaults, $key);
     }
-
-    @warn "Unknown `#{$key}` in $omg-defaults.";
+    @warn 'Unknown `#{$key}` in $omg-defaults.';
     @return null;
 }
 
+
+// Calculate column width
 @function omg-col-width($cols) {
-    @return percentage(omg-map-get($columns) / $cols);
+    // check it's a round number between 1 and columns set in config.
+    @if type-of($cols) == number and round($cols) == $cols and $cols > 0 and $cols <= omg-map-get(columns)  {
+        @return percentage($cols / omg-map-get(columns));
+    }
+    @warn 'Expected a whole number between 1 and #{omg-map-get(columns)}';
+    @return null;
 }
 
 @mixin omg-span($cols) {
-    // Do a sanity check on value passed in.
-    width: omg-col-width($cols);
+    @if omg-map-get(enable-flex) == true {
+        flex-basis: omg-col-width($cols);
+    }
+    @else {
+        @warn 'flex false';
+    }
+}
+
+
+@debug(omg-col-width(3));
+
+.test {
+    @include omg-span(3);
 }
 
 // Start by working out the width
@@ -60,10 +96,6 @@
 //         content: $icon;
 //     }
 // }
-
-.test {
-    @include omg-span(6);
-}
 
 
 // Create a function that retrieves a value from a sass map (so don't keep writing-map-get
